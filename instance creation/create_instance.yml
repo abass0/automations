@@ -9,7 +9,7 @@
      security_group: sec-group-ssh-http-2
      image: ami-03d64741867e7bb94
      region: us-east-2
-     keypair_name: linux-key-tower
+     keypair_name: linux-key
      count: 1
      vm_name: linux
 
@@ -42,7 +42,7 @@
                       
      - name: Criating EC2 instance
        ec2:
-         key_name: linux-key-tower
+         key_name: linux-key
          group: "{{ security_group }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
