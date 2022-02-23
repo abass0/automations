@@ -10,7 +10,7 @@
      image: ami-096fda3c22c1c990a
      region: us-east-1
      keypair_name: linux-key
-     count: 1
+     #count: 1
      vm_name: linux
 
    tasks:  
