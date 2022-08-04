@@ -7,7 +7,7 @@
    vars:
      instance_type: t2.micro
      security_group: sec-group-ssh-http-2
-     image: ami-0238411fb452f8275
+     image: ami-06640050dc3f556bb
      region: us-east-2
      keypair_name: lab
      count: 1
