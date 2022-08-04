@@ -8,7 +8,7 @@
      instance_type: t2.micro
      security_group: sec-group-ssh-http-2
      image: ami-096fda3c22c1c990a
-     region: us-east-1
+     region: us-east-2
      keypair_name: lab
      count: 1
      vm_name: linux
