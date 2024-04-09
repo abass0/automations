@@ -21,7 +21,7 @@
       state: permissive
         
   - name: Installing Firewalld
-    yum:
+    dnf:
       name: firewalld
       state: latest
         

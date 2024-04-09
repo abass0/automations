@@ -1,9 +1,0 @@
-- name: Create VM with defaults
-  azure_rm_virtualmachine:
-    resource_group: openenv-sl286
-    name: linux
-    image:
-      offer: Red Hat Enterprise Linux
-      publisher: Red Hat Inc
-      sku: '8.2'
-      version: latest
