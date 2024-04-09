@@ -1,5 +1,0 @@
-- name: Delete instances
-  amazon.aws.ec2_instance:
-    state: absent
-    filters:
-      instance-name: linux
