@@ -1,6 +1,9 @@
 ---
-- name: Install and register Insights
-  hosts: all
-  roles:
-  - role: RedHatInsights.insights-client
-    when: ansible_os_family == 'RedHat'
+- name: setting up Insights Client on RHEL machines
+  become: true
+
+  tasks:
+
+    - name: activate Insights
+      insights_register:
+        state: present
