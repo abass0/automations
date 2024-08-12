@@ -1,0 +1,65 @@
+---
+- name: Deploy RHEL VM on KVM
+  hosts: localhost
+  become: yes
+  gather_facts: false
+  vars:
+    vm_name: "rhel-vm"
+    vm_ram: 2048  # RAM em MB
+    vm_vcpus: 2   # Número de CPUs
+    vm_disk_size: 20  # Tamanho do disco em GB
+    vm_image_url: "https://access.cdn.redhat.com/content/origin/files/sha256/d3/d362e72518a2d7415d850b8177c814f6fd87f42ca1640bda17e98855e1d6baad/rhel-9.4-x86_64-kvm.qcow2?user=1513433c319d33ba76cacb139db537de&_auth_=1723488718_50c2d59ea12573344a892cfce3697cd2"
+
+  tasks:
+    - name: Ensure required packages are installed
+      ansible.builtin.yum:
+        name:
+          - libvirt
+          - qemu-kvm
+          - virt-install
+          - libvirt-daemon-kvm
+        state: present
+
+    - name: Ensure libvirtd is running and enabled
+      ansible.builtin.systemd:
+        name: libvirtd
+        state: started
+        enabled: true
+
+    - name: Create directory for VM storage
+      ansible.builtin.file:
+        path: "/var/lib/libvirt/images/{{ vm_name }}"
+        state: directory
+        mode: '0755'
+
+    - name: Download RHEL image
+      ansible.builtin.get_url:
+        url: "{{ vm_image_url }}"
+        dest: "/var/lib/libvirt/images/{{ vm_name }}/rhel.qcow2"
+        checksum: sha256:d362e72518a2d7415d850b8177c814f6fd87f42ca1640bda17e98855e1d6baad
+        mode: '0644'
+      when: vm_image_url is not none
+
+    - name: Create VM with virt module
+      community.libvirt.virt:
+        name: "{{ vm_name }}"
+        memory: "{{ vm_ram }}"
+        vcpus: "{{ vm_vcpus }}"
+        disks:
+          - name: "{{ vm_name }}-disk"
+            size: "{{ vm_disk_size }}"
+            pool: default
+            image: "/var/lib/libvirt/images/{{ vm_name }}/rhel.qcow2"
+        networks:
+          - name: default
+        state: running
+        xml: | 
+          <cpu mode='host-passthrough'/>
+      when: ansible_virtualization_type == "kvm"
+
+    - name: Start the VM
+      ansible.builtin.command:
+        cmd: virsh start {{ vm_name }}
+        args:
+          creates: "/etc/libvirt/qemu/{{ vm_name }}.xml"
+      when: ansible_virtualization_type == "kvm"
