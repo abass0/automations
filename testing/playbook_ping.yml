@@ -1,7 +1,0 @@
----
-- name: Simple playbook for testing outcome
-  hosts: all
-  become: yes
-  tasks:
-  - debug: 
-      msg: "This is Automation Controller speaking, over."

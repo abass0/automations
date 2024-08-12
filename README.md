@@ -9,19 +9,8 @@
 
 ## Supporting Info
 
-These automations are *mostly* for linux environments. Windows to come. 
+These automations are *mostly* for linux environments.
 
-## What do we have here?
-
-- Apache Setup and Configuration
-- NGINX Setup (Basic configuration)
-- Firewall Configuration
-- Selinux Configuration
-- User Creation
-- EC2 Amazon Creation and Configuration
-- Red Hat Insights Setup 
-- File Manipulation ![](https://media.giphy.com/media/rFsm3p6zCvScU/giphy.gif)
-- Machine Manipulation ![](https://media.giphy.com/media/rFsm3p6zCvScU/giphy.gif)
 
 
 
