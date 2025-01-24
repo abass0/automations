@@ -4,7 +4,7 @@
   become: true
   tasks:
     - name: Subscribe machine to the Hybrid Cloud Console
-      redhat_subscription:
+      community.general.redhat_subscription:
         state: present
         activationkey: abasso-lab
         org_id: 12560956
