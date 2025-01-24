@@ -1,0 +1,8 @@
+---
+- name: Enable Cockpit service
+  hosts: all
+  become: true
+  tasks:
+    - name: Enable Cockpit service
+      ansible.builtin.command: systemctl enable --now cockpit.socket
+      
