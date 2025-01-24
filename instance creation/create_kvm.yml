@@ -54,12 +54,10 @@
           - name: default
         state: running
         xml: | 
-          <cpu mode='host-passthrough'/>
-      when: ansible_virtualization_type == "kvm"
+          <cpu mode='host-passthrough'/>   
 
     - name: Start the VM
       ansible.builtin.command:
         cmd: virsh start {{ vm_name }}
         args:
           creates: "/etc/libvirt/qemu/{{ vm_name }}.xml"
-      when: ansible_virtualization_type == "kvm"
