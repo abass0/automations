@@ -1,5 +1,5 @@
 ---
-- name: Enable Cockpit service
+- name: Subscribe system to RHSM
   hosts: all
   become: true
   tasks:
