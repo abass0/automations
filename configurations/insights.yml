@@ -3,6 +3,6 @@
   hosts: all
   become: true
   tasks:
-    - name: Register the Insights client
+    - name: Register the insights client
       insights_register:
         state: present
