@@ -4,7 +4,7 @@
   become: true
   tasks:
     - ansible.builtin.template:
-        src: configurations/files/motd-facts.j2
+        src: configurations/templates/motd-facts.j2
         dest: /etc/motd
         owner: root
         group: root
