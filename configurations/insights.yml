@@ -1,9 +1,8 @@
 ---
-- name: setting up Insights Client on RHEL machines
+- name: Register Insights
+  hosts: all
   become: true
-
   tasks:
-
-    - name: activate Insights
+    - name: Register the Insights client
       insights_register:
         state: present
