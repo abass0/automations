@@ -1,5 +1,6 @@
 ---
 - name: Configure windows iis
+  hosts: all
   gather_facts: false
 
   tasks:
